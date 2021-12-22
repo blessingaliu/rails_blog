@@ -194,3 +194,32 @@ end
 
 We can reference @articles in app/views/articles/index.html.erb
 ```
+
+</br>
+
+### Showing a single article
+
+```ruby
+# adding a new route that maps to a new controller action
+
+get "/articles/:id", to: "articles#show"
+
+
+# In the app/controllers/articles_controller.rb you can add the show action
+
+  def show
+    @article = Article.find(params[:id])
+  end
+
+# Create a show.html.erb that can show the single article title and body 
+
+<h1><%= @article.title %></h1>
+
+<p><%= @article.body %></p>
+
+# Link each article's title in the index view to its page 
+    <a href='/articles/<%= article.id %>'><button>Article title</button></a>
+
+```
+
+
