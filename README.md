@@ -73,3 +73,45 @@ rails db:setup
 
 rails db:migrate 
 ```
+
+</br>
+
+Setting up an articles route 
+
+```ruby
+# Let's start by adding a route to our routes file, config/routes.rb, at the top of the Rails.application.routes.draw block:
+
+Rails.application.routes.draw do
+  get "/articles", to: 
+  
+  "articles#index"
+
+end
+
+# The route above declares that GET /articles requests are mapped to the index action of ArticlesController.
+```
+
+```ruby
+# To create ArticlesController and its index action, we'll run the controller generator (with the --skip-routes option because we already have an appropriate route):
+
+$ bin/rails generate controller Articles index --skip-routes
+
+
+# Let's open app/views/articles/index.html.erb, and replace its contents with:
+
+<h1>Articles page!</h1>
+```
+
+Setting up the home page
+
+```ruby 
+# Let's open config/routes.rb, and add the following root route to the top of the Rails.application.routes.draw block:
+
+Rails.application.routes.draw do
+  root "articles#index"
+
+  get "/articles", to: "articles#index"
+end
+
+# Now we can see our "Articles page" text when we visit http://localhost:3000, confirming that the root route is also mapped to the index action of ArticlesController.
+```
