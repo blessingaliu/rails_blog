@@ -118,6 +118,8 @@ end
 confirming that the root route is also mapped to the index action of ArticlesController.
 ```
 
+</br>
+
 ### Generating a model
 
 ```ruby 
@@ -130,6 +132,8 @@ bin/rails generate model Article title:string body:text
 # this creates two files, a migration file (db/migrate/<timestamp>_create_articles.rb) and the model file (app/models/article.rb).
 ```
 
+</br>
+
 #### Results of the model explained
 The call to create_table specifies how the articles table should be constructed. By default, the create_table method adds an id column as an auto-incrementing primary key. So the first record in the table will have an id of 1, the next record will have an id of 2, and so on.
 
@@ -137,10 +141,56 @@ Inside the block for create_table, two columns are defined: title and body. Thes
 
 On the last line of the block is a call to t.timestamps. This method defines two additional columns named created_at and updated_at. As we will see, Rails will manage these for us, setting the values when we create or update a model object.
 
+</br>
 
 ### Migrate the database
 ```ruby
 $ bin/rails db:migrate
 
 # we can now interact with the table using our model 
+```
+
+</br>
+
+### Using rails console to interact with the database
+
+```ruby 
+$ bin/rails console
+
+# At this prompt, we can initialize a new Article object:
+irb> article = Article.new(title: "Blessing checking in", body: "Excited to start learning Rails")
+
+# It's important to note that we have only initialized this object. This object is not saved to the database at all. It's only available in the console at the moment. To save the object to the database, we must call save:
+irb> article.save
+=> true
+
+irb> article 
+=>  #<Article:0x00000001368142f0
+ id: 1,
+ title: "Blessing checking in",
+ body: "Excited to start learning Rails",
+ created_at:
+  Wed, 22 Dec 2021 20:59:45.424206000 UTC +00:00,
+ updated_at:
+  Wed, 22 Dec 2021 20:59:45.424206000 UTC +00:00> 
+
+irb> Article.find(1)
+
+irb> Article.all
+```
+
+</br>
+
+### Showing a list of articles
+
+```ruby
+# In app/controllers/articles_controller.rb, and change the index action to fetch all articles from the database:
+
+class ArticlesController < ApplicationController
+  def index
+    @articles = Article.all
+  end
+end
+
+We can reference @articles in app/views/articles/index.html.erb
 ```
