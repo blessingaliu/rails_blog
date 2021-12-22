@@ -1,26 +1,75 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project: Blog app
 
-Things you may want to cover:
+Installing ruby 
 
-* Ruby version
+```ruby
+$ ruby --version
 
-* System dependencies
+ruby 3.0.2p107
+```
+</br>
 
-* Configuration
+Installing Node.js and Yarn 
 
-* Database creation
+```ruby
+$ node --version
 
-* Database initialization
+ brew install yarn
 
-* How to run the test suite
+$ yarn --version
+```
+</br>
 
-* Services (job queues, cache servers, search engines, etc.)
+Installing Postgres
 
-* Deployment instructions
+```ruby
+gem install pg
+```
+</br>
 
-* ...
-# rails_blog
-# rails_blog
+Create application with specific params 
+
+```ruby
+rails new app-name -T -d postgresql
+```
+</br>
+
+Install RSpec 
+
+```ruby
+#in Gemfile group :development, :test add 
+
+ gem 'rspec-rails', '~> 5.0.0'
+
+#in command line
+bundle install
+rails generate rspec:install
+```
+
+</br>
+
+Create a Repo in GitHub
+
+In your terminal, connect your local and remote repo 
+
+```ruby
+echo "# rails_blog" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/blessingaliu/rails_blog.git
+git push -u origin main
+```
+
+</br>
+
+Setup your database 
+
+```ruby
+rails db:setup
+
+rails db:migrate 
+```
