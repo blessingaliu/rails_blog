@@ -241,6 +241,82 @@ end
 <%= link_to article.title, article %>
 
 # This will show th article title as the link text and when that is clicked the link will go to the article_path (which is the articles#index - all articles)
-
 ```
+
+### Creating a new article  
+
+```ruby 
+# Getting a user to make a new article in the blog will require them submitting a form 
+
+# This can be done with the controller's new and create actions in Rails 
+
+  def new
+    @article = Article.new
+  end
+
+# The new action instantiates a new article but does not save it. The new action will render new.html.erb
+
+  def create
+    @article = Article.new(article_params)
+
+    if @article.save
+      redirect_to @article
+    else
+      render :new
+    end
+  end
+
+  # The create action instantiates a new article with the values for the title and body and tries to save it. The if statement says if it the artisle is saved to the database, the action will rediret to the page http://localhost:3000/articles/#{@article.id}, otherwise render the new.html.erb page
+
+   private
+    def article_params
+      params.require(:article).permit(:title, :body)
+    end
+
+    # Adding a private method to filter params and changing the create action to use it.
+
+
+  # Create a new.html.erb 
+  <h1>New Article</h1>
+
+<%= form_with model: @article do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+# The form_with helper method instantiates a form builder.  In the form_with block we call methods like label and text_field on the form builder to output the appropriate form elements.
+```
+
+#### Validating and displaying error messages 
+
+ Rails provides a feature called validations to help us deal with invalid user input - these are riles that are checked before a model object is saved.
+
+ If any of the checks fail, the save will be aborted, and appropriate error messages will be added to the errors attribute of the model object.
+
+ ```ruby 
+# Add some validations to our model in app/models/article.rb:
+
+class Article < ApplicationRecord
+  validates :title, presence: true
+  validates :body, presence: true, length: { minimum: 10 }
+end
+
+# The first validation says that there must be a title and the second says that there must be a body and the length must be at least 10 characters long
+
+# Add error messages for title and body in new.html.erb 
+
+
+ ```
+
 
