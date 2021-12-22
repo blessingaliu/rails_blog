@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   root "articles#index"
 
   # Defines the index page to show all the articles 
-  get "/articles", to: "articles#index"
+  # get "/articles", to: "articles#index"
 
   # Defines a new route by user id to show a single article 
-  get "/articles/:id", to: "articles#show"
+  # get "/articles/:id", to: "articles#show"
+
+  resources :articles   
 end

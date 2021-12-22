@@ -222,4 +222,25 @@ get "/articles/:id", to: "articles#show"
 
 ```
 
+</br>
+
+### Incorporating Resourceful routing 
+
+```ruby 
+# You can use **resources** in rails that maps all the conventional routes for a collection of resources eg the create, read, update and delete (CRUD) routes
+
+Rails.application.routes.draw do
+  root "articles#index"
+
+  resources :articles
+end
+
+# the link_to helper renders a link with its first argument as the link's text 
+# the second argument is where the link is going to 
+
+<%= link_to article.title, article %>
+
+# This will show th article title as the link text and when that is clicked the link will go to the article_path (which is the articles#index - all articles)
+
+```
 
