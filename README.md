@@ -315,8 +315,49 @@ end
 # The first validation says that there must be a title and the second says that there must be a body and the length must be at least 10 characters long
 
 # Add error messages for title and body in new.html.erb 
-
-
  ```
 
+</br>
 
+### Updating an article
+
+```ruby 
+# Updating a resource is similar to creating it.
+
+# This can be done with the controller's edit and update actions in Rails 
+
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  # The edit action fetches the article from the database and stores in @article so it can be used when building the form 
+
+  # edit action will render edit.html.erb
+
+  def update
+    @article = Article.find(params[:id])
+
+    if @article.update(article_params)
+      redirect_to @article
+    else
+      render :edit
+    end
+  end
+
+  # The update action re(fetches) the article from the database and tries to update it with the submitted form data filtered by article_params. 
+
+  # If the update works then the action redirects the browser back to the article page. Else the action redisplays the form (edit.html.erb)
+
+```
+
+</br>
+
+### Using partials to share view code 
+
+```ruby 
+# Create a _form.html.erb which uses the same code as the new.html.erb except all occurrences of @article have been replaced with article.
+
+# A partial's filename must be prefixed with an underscore, e.g. _form.html.erb. But when rendering, it is referenced without the underscore, e.g. render "form".
+
+# 
+```
