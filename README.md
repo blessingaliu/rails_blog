@@ -359,5 +359,26 @@ end
 
 # A partial's filename must be prefixed with an underscore, e.g. _form.html.erb. But when rendering, it is referenced without the underscore, e.g. render "form".
 
-# 
+```
+
+
+</br>
+
+### Deleting an article  
+
+```ruby 
+# Adding a destroy action to the controller
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+
+    redirect_to root_path
+  end
+
+# The destroy action gets the article from the database and removes it and then redirects the browser to the root_path
+
+# Add a link to the bottom of the show.html.erb so we can delete an article from its own page 
+
+
 ```
