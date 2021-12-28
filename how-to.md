@@ -435,7 +435,7 @@ bin/rails generate controller Comments
 
 </br>
 
-### Generating a second Model
+###
 
 ```ruby 
 
@@ -443,7 +443,7 @@ bin/rails generate controller Comments
 
 </br>
 
-### Generating a second Model
+### 
 
 ```ruby 
 
