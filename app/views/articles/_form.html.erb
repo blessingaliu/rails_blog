@@ -20,27 +20,40 @@
   </div>
 </nav>
 
+  <div class="d-flex align-items-center justify-content-center">
+    <h1 style="padding: 50px 50px 50px 50px">New Article</h1>
+  </div>
 
-<h1>New Article</h1>
-<%= form_with model: article do |form| %>
-    <div class="container">
-      <%= form.label :title %><br>
-      <%= form.text_field :title %>
+  <div class ="d-flex align-items-center justify-content-center">
+    <%= form_with model: article do |form| %>
+      <div class="d-flex align-items-center justify-content-center"; style = "padding-bottom: 5px">
+      <%= form.label :title %>
+      </div>
+      <div class="d-flex align-items-center justify-content-center"; style = "padding-bottom: 30px">
+        <%= form.text_field :title %>
+      </div>
+      <div style= "padding-bottom: 50px">
       <% article.errors.full_messages_for(:title).each do |message| %>
-        <div><%= message %></div>
-      <% end %>
+      <%= message %>
+    <% end %>
     </div>
+  </div>
   
-    <div class="container">
-      <%= form.label :body %><br>
-      <%= form.text_area :body %><br>
+    <div class="d-flex align-items-center justify-content-center"; style= "padding-bottom: 5px">
+      <%= form.label :body %>
+    </div>
+    <div class="d-flex align-items-center justify-content-center"; style= "padding-bottom: 30px";>
+      <%= form.text_area :body %>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
       <% article.errors.full_messages_for(:body).each do |message| %>
-        <div><%= message %></div>
+      <%= message %>
       <% end %>
     </div>
-  
-    <div class="container">
-      <%= form.submit %>
     </div>
-  <% end %>
+  
+    <div class="d-flex align-items-center justify-content-center"; style="padding: 50px 50px;" >
+    <%= form.submit %><% end %>
+    </div>
+
   
