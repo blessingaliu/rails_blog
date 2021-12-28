@@ -21,29 +21,27 @@
 </nav>
 
 
-<div class="container">
+<div>
     <h1><%= @article.title %></h1>
 </div>
 
-<div class="container">
+<div>
     <p><%= @article.body %></p>
 </div>
 
 
-<div class="container">
+<div class= "container">
     <button><%= link_to "Edit Article", edit_article_path(@article) %></button>
-    <button>
-    <%= link_to "Delete Article", article_path(@article), method: :delete, data: { confirm: "Are you sure?" } %>
-    </button>
+    <%= button_to "Delete Article", article_path(@article), method: :delete, data: { confirm: "Are you sure?" } %>
     <button><%= link_to "Back to Homepage", root_path %></button>
 </div>
 
-<div class="container">
-<%= render @article.comments %>
+<div>
+  <%= render @article.comments %>
 </div>
 
 
-<div class="container">
+<div>
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
 </div>
