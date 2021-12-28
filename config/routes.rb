@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   # Defines a new route by user id to show a single article 
   # get "/articles/:id", to: "articles#show"
 
-  resources :articles   
+  resources :articles do
+    resources :comments
+  end  
 end

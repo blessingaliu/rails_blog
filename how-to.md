@@ -379,6 +379,72 @@ end
 # The destroy action gets the article from the database and removes it and then redirects the browser to the root_path
 
 # Add a link to the bottom of the show.html.erb so we can delete an article from its own page 
+```
 
+</br>
+
+### Generating a second Model
+This time we'll create a Comment model to hold a reference to an article
+
+```ruby 
+$ bin/rails generate model Comment commenter:string body:text article:references
+
+$ bin/rails db:migrate
+```
+
+</br>
+
+### Associating Models
+- Each comment belongs to one article.
+- One article can have many comments.
+
+```ruby 
+# You'll need to edit app/models/article.rb to add the other side of the association:
+class Article < ApplicationRecord
+  has_many :comments
+
+  validates :title, presence: true
+  validates :body, presence: true, length: { minimum: 10 }
+end
+
+```
+
+</br>
+
+### Adding a route for comments
+
+```ruby 
+# adding comments as a nested resource within articles. 
+
+  resources :articles do
+    resources :comments
+  end
+```
+
+</br>
+
+### Generating a Controller
+
+```ruby 
+bin/rails generate controller Comments
+
+
+# Add a show template in  (app/views/articles/show.html.erb) to allow you to make a new comment
+
+```
+
+</br>
+
+### Generating a second Model
+
+```ruby 
+
+```
+
+</br>
+
+### Generating a second Model
+
+```ruby 
 
 ```

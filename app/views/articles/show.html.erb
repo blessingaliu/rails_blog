@@ -12,3 +12,13 @@
     </button>
     <button><%= link_to "Back to Homepage", root_path %></button>
 </div>
+
+<div>
+<%= render @article.comments %>
+</div>
+
+
+<div>
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>
+</div>
